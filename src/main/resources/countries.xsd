@@ -16,6 +16,22 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="getCountryPopulationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCountryPopulationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="population" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="country">
         <xs:sequence>
