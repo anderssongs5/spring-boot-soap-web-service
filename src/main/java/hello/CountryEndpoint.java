@@ -11,9 +11,12 @@ import io.spring.guides.gs_producing_web_service.GetCountryPopulationRequest;
 import io.spring.guides.gs_producing_web_service.GetCountryPopulationResponse;
 import io.spring.guides.gs_producing_web_service.GetCountryRequest;
 import io.spring.guides.gs_producing_web_service.GetCountryResponse;
+import io.spring.guides.gs_producing_web_service.NewCountryRequest;
+import io.spring.guides.gs_producing_web_service.NewCountryResponse;
 
 @Endpoint
 public class CountryEndpoint {
+
 	private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
 
 	private CountryRepository countryRepository;
@@ -40,6 +43,15 @@ public class CountryEndpoint {
 		if (c != null) {
 			response.setPopulation(c.getPopulation());
 		}
+
+		return response;
+	}
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "newCountryRequest")
+	@ResponsePayload
+	public NewCountryResponse saveCountry(@RequestPayload NewCountryRequest request) {
+		NewCountryResponse response = new NewCountryResponse();
+		response.setCountry(countryRepository.saveCountry(request.getCountry()));
 
 		return response;
 	}

@@ -52,4 +52,17 @@ public class CountryRepository {
 		Assert.notNull(name, "The country's name must not be null");
 		return countries.get(name);
 	}
+
+	public String saveCountry(Country country) {
+		Assert.notNull(country, "The country must not be null");
+		Assert.notNull(country.getName(), "The country's name must not be null");
+		Assert.notNull(country.getCapital(), "The country's capital must not be null");
+		Assert.notNull(country.getCurrency(), "The country's currency must not be null");
+		Assert.notNull(country.getCapital(), "The country's capital must not be null");
+		Assert.isTrue(!(country.getPopulation() <= 0), "The country's population must be greater than 0");
+
+		countries.put(country.getName(), country);
+
+		return country.getName();
+	}
 }
